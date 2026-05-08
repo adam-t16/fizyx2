@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collections — FIZYX</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0a0a0a;--dark:#111;--cream:#f0ebe0;
+  --gold:#b8975a;--gold-light:#d4ae72;--white:#fff;--gray:#888;--card-bg:#161616;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:64px;background:rgba(10,10,10,0.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.05)}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:3px;color:var(--white);text-decoration:none}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:11px;font-weight:500;letter-spacing:1.5px;color:rgba(255,255,255,0.7);text-decoration:none;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-icons{display:flex;align-items:center;gap:20px}
+.nav-icon-btn{background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.7);font-size:20px;transition:color .2s;position:relative;padding:4px}
+.nav-icon-btn:hover{color:var(--gold)}
+.badge{position:absolute;top:-4px;right:-4px;background:var(--gold);color:var(--black);font-size:8px;font-weight:700;width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif}
+
+.hero{min-height:70vh;position:relative;display:flex;align-items:center;justify-content:center;padding-top:64px;overflow:hidden;text-align:center}
+.hero-bg{position:absolute;inset:0;background-image:url('hero.png');background-size:cover;background-position:center}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.55) 0%,rgba(10,10,10,0.75) 60%,rgba(10,10,10,1) 100%)}
+.hero-content{position:relative;z-index:2;max-width:720px;padding:0 20px}
+.hero-eyebrow{font-size:10px;font-weight:600;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-bottom:20px;display:block}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,12vw,140px);line-height:.9;letter-spacing:4px;color:var(--white);margin-bottom:24px}
+.hero-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:rgba(255,255,255,0.75);line-height:1.6}
+
+.section{padding:100px 60px}
+.section-eyebrow{font-size:10px;font-weight:600;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:14px;display:block}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,60px);letter-spacing:2px;color:var(--white);margin-bottom:16px;line-height:.95}
+.section-text{font-size:13px;font-weight:300;line-height:1.9;color:rgba(255,255,255,0.6);max-width:560px}
+
+.collections-header{text-align:center;margin-bottom:70px}
+.collections-header .section-text{margin:0 auto}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2px}
+
+.card{position:relative;overflow:hidden;cursor:pointer;background:#000}
+.card-img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.25,.46,.45,.94),filter .6s}
+.card:hover .card-img{transform:scale(1.07);filter:brightness(.7)}
+.card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.1) 50%,transparent 100%);transition:opacity .4s}
+.card:hover .card-overlay{opacity:.9}
+.card-body{position:absolute;bottom:0;left:0;right:0;padding:32px 28px;transform:translateY(8px);transition:transform .4s}
+.card:hover .card-body{transform:translateY(0)}
+.card-tag{font-size:9px;font-weight:700;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:10px;display:block}
+.card-name{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;color:var(--white);margin-bottom:8px}
+.card-desc{font-size:12px;font-weight:300;color:rgba(255,255,255,.7);line-height:1.6;margin-bottom:16px;opacity:0;transform:translateY(6px);transition:opacity .4s .05s,transform .4s .05s}
+.card:hover .card-desc{opacity:1;transform:translateY(0)}
+.card-cta{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:600;letter-spacing:2px;color:var(--gold);text-decoration:none;text-transform:uppercase;opacity:0;transition:opacity .3s .1s}
+.card:hover .card-cta{opacity:1}
+.card-badge{position:absolute;top:20px;right:20px;background:var(--gold);color:var(--black);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 12px}
+
+.featured{margin:80px 60px;background:var(--card-bg);display:grid;grid-template-columns:1fr 1fr;min-height:560px;overflow:hidden;border:1px solid rgba(255,255,255,.05)}
+.featured-img-wrap{position:relative;overflow:hidden}
+.featured-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s}
+.featured:hover .featured-img{transform:scale(1.04)}
+.featured-img-overlay{position:absolute;inset:0;background:rgba(0,0,0,.15)}
+.featured-body{padding:60px 56px;display:flex;flex-direction:column;justify-content:center}
+.featured-kicker{font-size:9px;font-weight:700;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.featured-kicker::after{content:'';flex:1;height:1px;background:rgba(184,151,90,.3)}
+.featured-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,5vw,72px);line-height:.9;letter-spacing:3px;color:var(--white);margin-bottom:24px}
+.featured-desc{font-size:13px;font-weight:300;line-height:1.9;color:rgba(255,255,255,.65);margin-bottom:36px}
+.btn-gold{display:inline-block;background:var(--gold);color:var(--black);font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:15px 32px;border:none;cursor:pointer;transition:background .25s,transform .2s;text-decoration:none}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-1px)}
+.btn-outline{display:inline-block;border:1px solid rgba(184,151,90,.5);color:var(--gold);font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:14px 28px;cursor:pointer;transition:border-color .25s,background .25s;text-decoration:none;margin-left:14px}
+.btn-outline:hover{border-color:var(--gold);background:rgba(184,151,90,.08)}
+
+.divider{width:60px;height:1px;background:var(--gold);margin:0 auto 60px}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.04);margin:0 60px 80px}
+.stat{background:var(--card-bg);padding:40px 32px;text-align:center}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:52px;letter-spacing:2px;color:var(--gold);line-height:1}
+.stat-label{font-size:10px;font-weight:500;letter-spacing:3px;color:rgba(255,255,255,.4);text-transform:uppercase;margin-top:8px}
+
+.newsletter{background:linear-gradient(135deg,#1a1500 0%,#0a0a0a 100%);border-top:1px solid rgba(184,151,90,.12);border-bottom:1px solid rgba(184,151,90,.12);padding:80px 60px;text-align:center}
+.nl-input-wrap{display:inline-flex;margin-top:32px;max-width:440px;width:100%}
+.nl-input{flex:1;background:#111;border:1px solid #2a2a2a;border-right:none;color:var(--white);font-family:'Montserrat',sans-serif;font-size:12px;padding:14px 20px;outline:none;transition:border-color .2s}
+.nl-input::placeholder{color:#444}
+.nl-input:focus{border-color:var(--gold)}
+.nl-btn{background:var(--gold);border:none;padding:0 22px;cursor:pointer;transition:background .2s;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--black)}
+.nl-btn:hover{background:var(--gold-light)}
+
+footer{background:#060606;padding:64px 60px 28px;border-top:1px solid #111}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:40px;margin-bottom:50px}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:3px;color:var(--white);margin-bottom:10px;display:block}
+.footer-tagline{font-size:12px;font-weight:300;color:var(--gray);line-height:1.7;margin-bottom:24px}
+.footer-socials{display:flex;gap:10px}
+.social-btn{width:34px;height:34px;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s,background .2s;text-decoration:none;color:rgba(255,255,255,.6);font-size:16px}
+.social-btn:hover{border-color:var(--gold);background:rgba(184,151,90,.1);color:var(--gold)}
+.footer-col h4{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--white);margin-bottom:20px}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:11px}
+.footer-col ul a{font-size:12px;font-weight:300;color:var(--gray);text-decoration:none;transition:color .2s}
+.footer-col ul a:hover{color:var(--white)}
+.footer-bottom{border-top:1px solid #111;padding-top:24px;display:flex;justify-content:space-between;align-items:center}
+.footer-copy{font-size:11px;font-weight:300;color:#333;letter-spacing:.5px}
+
+@media(max-width:900px){
+  .featured{grid-template-columns:1fr;margin:60px 20px}
+  .featured-img-wrap{min-height:300px}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:1fr 1fr;margin:0 20px 60px}
+  nav{padding:0 20px}
+  .section{padding:60px 20px}
+  .grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:580px){
+  .grid{grid-template-columns:1fr}
+  nav .nav-links{display:none}
+  .featured-body{padding:40px 28px}
+  .footer-top{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">FIZYX</a>
+  <ul class="nav-links">
+ <li><a href="index.html">Accueil</a></li>
+    <li><a href="boutique.html">Boutique</a></li>
+    <li><a href="collections.html">Collections</a></li>
+    <li><a href="#story">À propos</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-icons">
+    <button class="nav-icon-btn" aria-label="Recherche">&#xe003;</button>
+    <button class="nav-icon-btn" aria-label="Compte">&#xe166;</button>
+    <button class="nav-icon-btn" aria-label="Panier" style="position:relative">
+      &#xe07a;
+      <span class="badge">0</span>
+    </button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Saison 2026</span>
+    <h1 class="hero-title">Collections</h1>
+    <p class="hero-sub">Chaque pièce raconte une histoire.<br>Trouve la tienne.</p>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">6</div><div class="stat-label">Collections</div></div>
+  <div class="stat"><div class="stat-num">120+</div><div class="stat-label">Pièces uniques</div></div>
+  <div class="stat"><div class="stat-num">12</div><div class="stat-label">Collaborations</div></div>
+  <div class="stat"><div class="stat-num">3</div><div class="stat-label">Drops 2026</div></div>
+</div>
+
+<section class="section" style="padding-top:0">
+  <div class="collections-header">
+    <span class="section-eyebrow">Nos collections</span>
+    <h2 class="section-title">Discover What Moves You</h2>
+    <div class="divider"></div>
+    <p class="section-text">Every collection at FIZYX is crafted with intention. From street culture to high fashion, each piece carries a message. Browse our latest drops and find your vibe.</p>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <img class="card-img" src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&q=80" alt="Winter Drop 2026">
+      <div class="card-overlay"></div>
+      <span class="card-badge">New</span>
+      <div class="card-body">
+        <span class="card-tag">AW 2026</span>
+        <div class="card-name">Winter Drop 2026</div>
+        <p class="card-desc">Designed for silence. Crafted for presence. Our latest winter essentials.</p>
+        <a href="#" class="card-cta">Explorer →</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="card-img" src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&q=80" alt="Urban Streetwear">
+      <div class="card-overlay"></div>
+      <div class="card-body">
+        <span class="card-tag">Streetwear</span>
+        <div class="card-name">Urban Streetwear</div>
+        <p class="card-desc">Raw energy meets refined aesthetics. Street culture reimagined.</p>
+        <a href="#" class="card-cta">Explorer →</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="card-img" src="https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=800&q=80" alt="Minimalist Essentials">
+      <div class="card-overlay"></div>
+      <div class="card-body">
+        <span class="card-tag">Essentials</span>
+        <div class="card-name">Minimalist Essentials</div>
+        <p class="card-desc">Less is more. Core pieces that define your style everyday.</p>
+        <a href="#" class="card-cta">Explorer →</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="card-img" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80" alt="Limited Edition">
+      <div class="card-overlay"></div>
+      <span class="card-badge">Limité</span>
+      <div class="card-body">
+        <span class="card-tag">Exclusif</span>
+        <div class="card-name">Limited Edition</div>
+        <p class="card-desc">Exclusive pieces. Once they're gone, they're gone forever.</p>
+        <a href="#" class="card-cta">Explorer →</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="card-img" src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80" alt="Heritage Classics">
+      <div class="card-overlay"></div>
+      <div class="card-body">
+        <span class="card-tag">Archives</span>
+        <div class="card-name">Heritage Classics</div>
+        <p class="card-desc">Timeless pieces that never go out of style. The FIZYX archives.</p>
+        <a href="#" class="card-cta">Explorer →</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="card-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Collaborations">
+      <div class="card-overlay"></div>
+      <span class="card-badge">Collab</span>
+      <div class="card-body">
+        <span class="card-tag">Partenariats</span>
+        <div class="card-name">Collaborations</div>
+        <p class="card-desc">Special partnerships with artists and designers worldwide.</p>
+        <a href="#" class="card-cta">Explorer →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="featured">
+  <div class="featured-img-wrap">
+    <img class="featured-img" src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=1000&q=85" alt="Winter Drop 2026 featured">
+    <div class="featured-img-overlay"></div>
+  </div>
+  <div class="featured-body">
+    <span class="featured-kicker">Collection vedette</span>
+    <h2 class="featured-title">Winter Drop 2026</h2>
+    <p class="featured-desc">Our most anticipated collection of the season. Designed for those who dare to stand out. Each piece represents our commitment to quality, style, and meaning.</p>
+    <div>
+      <a href="#" class="btn-gold">Découvrir</a>
+      <a href="#" class="btn-outline">En savoir plus</a>
+    </div>
+  </div>
+</div>
+
+<div class="newsletter">
+  <span class="section-eyebrow" style="display:block;margin-bottom:12px">Newsletter</span>
+  <h2 class="section-title" style="text-align:center">Rejoins la famille FIZYX</h2>
+  <p style="font-size:13px;font-weight:300;color:rgba(255,255,255,.55);margin-top:12px">Sois le premier informé des nouveaux drops et collaborations exclusives.</p>
+  <div class="nl-input-wrap">
+    <input type="email" class="nl-input" placeholder="Ton adresse email">
+    <button class="nl-btn">S'inscrire</button>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <span class="footer-logo">FIZYX</span>
+      <p class="footer-tagline">Streetwear designed<br>with emotion.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn" aria-label="Instagram">&#xe055;</a>
+        <a href="#" class="social-btn" aria-label="Twitter">&#xe0b6;</a>
+        <a href="#" class="social-btn" aria-label="TikTok">&#xe2c4;</a>
+        <a href="#" class="social-btn" aria-label="Facebook">&#xe04a;</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Liens</h4>
+      <ul>
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#">Boutique</a></li>
+        <li><a href="#">Collections</a></li>
+        <li><a href="#">À propos</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Aide</h4>
+      <ul>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Livraison</a></li>
+        <li><a href="#">Retours</a></li>
+        <li><a href="#">Guide des tailles</a></li>
+        <li><a href="#">Conditions</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="#">hello@fizyx.com</a></li>
+        <li><a href="#">+212 6 00 00 00 00</a></li>
+        <li><a href="#">Casablanca, Maroc</a></li>
+        <li><a href="#">Espace presse</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 FIZYX. Tous droits réservés.</p>
+    <p class="footer-copy">Politique de confidentialité · Mentions légales</p>
+  </div>
+</footer>
+
+<script>
+const nav = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+  nav.style.background = window.scrollY > 60 ? 'rgba(5,5,5,0.99)' : 'rgba(10,10,10,0.96)';
+});
+</script>
+</body>
+</html>

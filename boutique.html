@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Boutique — FIZYX</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:wght@300;400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+:root{
+  --black:#0a0a0a;
+  --dark:#111;
+  --white:#fff;
+  --gold:#b8975a;
+  --gold-light:#d7b57c;
+  --gray:#888;
+  --card:#151515;
+}
+
+body{
+  font-family:'Montserrat',sans-serif;
+  background:var(--black);
+  color:var(--white);
+  overflow-x:hidden;
+}
+
+/* NAVBAR */
+
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:70px;
+  padding:0 40px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:rgba(0,0,0,0.92);
+  backdrop-filter:blur(12px);
+  z-index:999;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.logo{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:32px;
+  letter-spacing:4px;
+  text-decoration:none;
+  color:var(--white);
+}
+
+.nav-links{
+  display:flex;
+  gap:30px;
+  list-style:none;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:rgba(255,255,255,0.7);
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  transition:0.3s;
+}
+
+.nav-links a:hover{
+  color:var(--gold);
+}
+
+.nav-icons{
+  display:flex;
+  gap:18px;
+}
+
+.icon{
+  width:38px;
+  height:38px;
+  border:1px solid rgba(255,255,255,0.1);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.icon:hover{
+  border-color:var(--gold);
+  color:var(--gold);
+}
+
+/* HERO */
+
+.hero{
+  min-height:90vh;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  overflow:hidden;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:url('https://images.unsplash.com/photo-1523398002811-999ca8dec234?q=80&w=1600&auto=format&fit=crop') center/cover;
+  filter:brightness(0.4);
+  transform:scale(1.05);
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to bottom,
+  rgba(0,0,0,0.4),
+  rgba(0,0,0,0.85));
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  padding:20px;
+}
+
+.hero-sub{
+  color:var(--gold);
+  letter-spacing:5px;
+  text-transform:uppercase;
+  font-size:11px;
+  margin-bottom:20px;
+}
+
+.hero-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(90px,14vw,180px);
+  line-height:0.9;
+  letter-spacing:5px;
+}
+
+.hero-text{
+  max-width:650px;
+  margin:auto;
+  margin-top:20px;
+  color:rgba(255,255,255,0.7);
+  line-height:1.8;
+  font-size:14px;
+}
+
+/* SECTION */
+
+.section{
+  padding:100px 60px;
+}
+
+.section-header{
+  margin-bottom:60px;
+  text-align:center;
+}
+
+.section-sub{
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:4px;
+  font-size:10px;
+  margin-bottom:14px;
+}
+
+.section-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:60px;
+  letter-spacing:3px;
+}
+
+.section-text{
+  margin:auto;
+  margin-top:16px;
+  max-width:600px;
+  color:rgba(255,255,255,0.6);
+  line-height:1.8;
+  font-size:14px;
+}
+
+/* CATEGORIES */
+
+.categories{
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-bottom:70px;
+}
+
+.category-btn{
+  padding:14px 28px;
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.08);
+  color:rgba(255,255,255,0.8);
+  cursor:pointer;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:10px;
+  transition:0.3s;
+}
+
+.category-btn:hover,
+.category-btn.active{
+  background:var(--gold);
+  border-color:var(--gold);
+  color:var(--black);
+}
+
+/* PRODUCTS */
+
+.products-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:28px;
+}
+
+.product-card{
+  background:var(--card);
+  overflow:hidden;
+  position:relative;
+  transition:0.4s;
+  border:1px solid rgba(255,255,255,0.05);
+}
+
+.product-card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(184,151,90,0.4);
+}
+
+.product-image{
+  width:100%;
+  height:380px;
+  object-fit:cover;
+  transition:0.6s;
+}
+
+.product-card:hover .product-image{
+  transform:scale(1.08);
+}
+
+.product-content{
+  padding:24px;
+}
+
+.product-category{
+  color:var(--gold);
+  font-size:10px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+
+.product-name{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:34px;
+  margin-top:10px;
+  letter-spacing:2px;
+}
+
+.product-desc{
+  margin-top:12px;
+  color:rgba(255,255,255,0.6);
+  font-size:13px;
+  line-height:1.7;
+}
+
+.product-bottom{
+  margin-top:24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.price{
+  font-size:22px;
+  font-weight:700;
+  color:var(--gold);
+}
+
+.buy-btn{
+  background:var(--gold);
+  color:var(--black);
+  border:none;
+  padding:14px 22px;
+  cursor:pointer;
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  font-weight:700;
+  transition:0.3s;
+}
+
+.buy-btn:hover{
+  background:var(--gold-light);
+  transform:translateY(-2px);
+}
+
+/* FEATURED */
+
+.featured{
+  margin-top:120px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  background:#121212;
+  overflow:hidden;
+}
+
+.featured img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.featured-content{
+  padding:70px;
+  display:flex;
+  justify-content:center;
+  flex-direction:column;
+}
+
+.featured-sub{
+  color:var(--gold);
+  letter-spacing:4px;
+  text-transform:uppercase;
+  font-size:10px;
+}
+
+.featured-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:70px;
+  line-height:0.95;
+  margin:24px 0;
+}
+
+.featured-text{
+  color:rgba(255,255,255,0.65);
+  line-height:1.9;
+  font-size:14px;
+  margin-bottom:35px;
+}
+
+.featured-btn{
+  width:fit-content;
+  padding:16px 34px;
+  background:var(--gold);
+  color:var(--black);
+  text-decoration:none;
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  font-weight:700;
+}
+
+/* FOOTER */
+
+footer{
+  padding:70px 60px 30px;
+  background:#050505;
+  margin-top:120px;
+  border-top:1px solid rgba(255,255,255,0.05);
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:40px;
+}
+
+.footer-logo{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:34px;
+  letter-spacing:4px;
+}
+
+.footer-text{
+  margin-top:16px;
+  color:rgba(255,255,255,0.5);
+  line-height:1.8;
+  max-width:300px;
+}
+
+.footer-title{
+  margin-bottom:20px;
+  text-transform:uppercase;
+  letter-spacing:3px;
+  font-size:10px;
+}
+
+.footer-links{
+  list-style:none;
+}
+
+.footer-links li{
+  margin-bottom:12px;
+}
+
+.footer-links a{
+  color:rgba(255,255,255,0.5);
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.footer-links a:hover{
+  color:var(--gold);
+}
+
+.footer-bottom{
+  margin-top:50px;
+  padding-top:25px;
+  border-top:1px solid rgba(255,255,255,0.05);
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:20px;
+  color:rgba(255,255,255,0.35);
+  font-size:12px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+  .featured{
+    grid-template-columns:1fr;
+  }
+
+  .featured-content{
+    padding:40px;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+}
+
+@media(max-width:600px){
+
+  nav{
+    padding:0 20px;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
+  .section{
+    padding:80px 20px;
+  }
+
+  .hero-title{
+    font-size:90px;
+  }
+
+  .section-title{
+    font-size:42px;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+  <a href="#" class="logo">FIZYX</a>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="boutique.html">Boutique</a></li>
+    <li><a href="collections.html">Collections</a></li>
+    <li><a href="#story">À propos</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <div class="nav-icons">
+    <div class="icon">♡</div>
+    <div class="icon">🛒</div>
+  </div>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+
+    <div class="hero-sub">
+      New Collection 2026
+    </div>
+
+    <h1 class="hero-title">
+      Boutique
+    </h1>
+
+    <p class="hero-text">
+      Explore les dernières pièces FIZYX.
+      Entre streetwear premium, minimalisme moderne
+      et collections exclusives.
+    </p>
+
+  </div>
+
+</section>
+
+<!-- SHOP -->
+
+<section class="section">
+
+  <div class="section-header">
+
+    <div class="section-sub">
+      Catégories
+    </div>
+
+    <h2 class="section-title">
+      Shop Your Style
+    </h2>
+
+    <p class="section-text">
+      Choisis ta vibe et découvre des vêtements conçus
+      pour ceux qui veulent se démarquer.
+    </p>
+
+  </div>
+
+  <!-- CATEGORY BUTTONS -->
+
+  <div class="categories">
+
+    <button class="category-btn active">Tous</button>
+    <button class="category-btn">Hoodies</button>
+    <button class="category-btn">T-Shirts</button>
+    <button class="category-btn">Pantalons</button>
+    <button class="category-btn">Sneakers</button>
+    <button class="category-btn">Accessoires</button>
+
+  </div>
+
+  <!-- PRODUCTS -->
+
+  <div class="products-grid">
+
+    <!-- PRODUCT -->
+
+    <div class="product-card">
+
+      <img 
+      src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop"
+      class="product-image">
+
+      <div class="product-content">
+
+        <div class="product-category">
+          Hoodie
+        </div>
+
+        <div class="product-name">
+          Shadow Hoodie
+        </div>
+
+        <p class="product-desc">
+          Hoodie premium oversized avec finition minimaliste.
+        </p>
+
+        <div class="product-bottom">
+
+          <div class="price">
+            899 DH
+          </div>
+
+          <button class="buy-btn">
+            Commander
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- PRODUCT -->
+
+    <div class="product-card">
+
+      <img 
+      src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=1200&auto=format&fit=crop"
+      class="product-image">
+
+      <div class="product-content">
+
+        <div class="product-category">
+          T-Shirt
+        </div>
+
+        <div class="product-name">
+          Noir Essential
+        </div>
+
+        <p class="product-desc">
+          T-shirt streetwear épuré conçu pour un look moderne.
+        </p>
+
+        <div class="product-bottom">
+
+          <div class="price">
+            399 DH
+          </div>
+
+          <button class="buy-btn">
+            Commander
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- PRODUCT -->
+
+    <div class="product-card">
+
+      <img 
+      src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop"
+      class="product-image">
+
+      <div class="product-content">
+
+        <div class="product-category">
+          Sneakers
+        </div>
+
+        <div class="product-name">
+          Urban Runner
+        </div>
+
+        <p class="product-desc">
+          Sneakers modernes pensées pour le confort et le style.
+        </p>
+
+        <div class="product-bottom">
+
+          <div class="price">
+            1499 DH
+          </div>
+
+          <button class="buy-btn">
+            Commander
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- PRODUCT -->
+
+    <div class="product-card">
+
+      <img 
+      src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop"
+      class="product-image">
+
+      <div class="product-content">
+
+        <div class="product-category">
+          Pantalon
+        </div>
+
+        <div class="product-name">
+          Cargo Elite
+        </div>
+
+        <p class="product-desc">
+          Cargo oversized inspiré du luxe streetwear japonais.
+        </p>
+
+        <div class="product-bottom">
+
+          <div class="price">
+            799 DH
+          </div>
+
+          <button class="buy-btn">
+            Commander
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- FEATURED -->
+
+  <div class="featured">
+
+    <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1600&auto=format&fit=crop">
+
+    <div class="featured-content">
+
+      <div class="featured-sub">
+        Collection Exclusive
+      </div>
+
+      <h2 class="featured-title">
+        Winter<br>
+        Drop 2026
+      </h2>
+
+      <p class="featured-text">
+        Une collection créée pour ceux qui veulent porter plus
+        qu’un simple vêtement.
+        Chaque pièce reflète une identité,
+        une émotion et une présence.
+      </p>
+
+      <a href="#" class="featured-btn">
+        Découvrir
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+  <div class="footer-grid">
+
+    <div>
+
+      <div class="footer-logo">
+        FIZYX
+      </div>
+
+      <p class="footer-text">
+        Streetwear premium inspiré par l’émotion,
+        la culture urbaine et le minimalisme moderne.
+      </p>
+
+    </div>
+
+    <div>
+
+      <div class="footer-title">
+        Boutique
+      </div>
+
+      <ul class="footer-links">
+        <li><a href="#">Nouveautés</a></li>
+        <li><a href="#">Best Sellers</a></li>
+        <li><a href="#">Collections</a></li>
+      </ul>
+
+    </div>
+
+    <div>
+
+      <div class="footer-title">
+        Aide
+      </div>
+
+      <ul class="footer-links">
+        <li><a href="#">Livraison</a></li>
+        <li><a href="#">Retours</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+
+    </div>
+
+    <div>
+
+      <div class="footer-title">
+        Contact
+      </div>
+
+      <ul class="footer-links">
+        <li><a href="#">hello@fizyx.com</a></li>
+        <li><a href="#">Casablanca, Maroc</a></li>
+      </ul>
+
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+
+    <div>
+      © 2026 FIZYX — Tous droits réservés
+    </div>
+
+    <div>
+      Privacy Policy · Conditions
+    </div>
+
+  </div>
+
+</footer>
+
+<script>
+
+const nav = document.querySelector('nav');
+
+window.addEventListener('scroll',()=>{
+
+  if(window.scrollY > 40){
+    nav.style.background = "rgba(0,0,0,0.98)";
+  }else{
+    nav.style.background = "rgba(0,0,0,0.92)";
+  }
+
+});
+
+</script>
+
+</body>
+</html>

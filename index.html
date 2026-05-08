@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIZYX — Not just clothing. A state of mind.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --dark: #111111;
+    --cream: #f0ebe0;
+    --gold: #b8975a;
+    --gold-light: #d4ae72;
+    --white: #ffffff;
+    --gray: #888888;
+    --card-bg: #1a1a1a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAVBAR ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 64px;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(8px);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 3px;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    color: var(--white);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .nav-icons svg {
+    width: 20px; height: 20px;
+    stroke: var(--white);
+    fill: none;
+    cursor: pointer;
+    transition: stroke 0.2s;
+  }
+  .nav-icons svg:hover { stroke: var(--gold); }
+
+  .cart-badge {
+    position: relative;
+  }
+  .cart-badge .badge {
+    position: absolute;
+    top: -6px; right: -6px;
+    background: var(--gold);
+    color: var(--black);
+    font-size: 9px;
+    font-weight: 700;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ─── HERO ─── */
+  .hero{
+  min-height:100vh;
+  position:relative;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  padding:0 8%;
+  background:
+    linear-gradient(
+      to right,
+      rgba(0,0,0,0.92) 0%,
+      rgba(0,0,0,0.72) 35%,
+      rgba(0,0,0,0.35) 65%,
+      rgba(0,0,0,0.75) 100%
+    ),
+    url("hero.png");
+    
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+
+/* CONTENT */
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:600px;
+}
+
+/* SMALL TEXT */
+.hero-eyebrow{
+  display:block;
+  margin-bottom:20px;
+  color:#d8c7a3;
+  font-size:12px;
+  letter-spacing:5px;
+  text-transform:uppercase;
+  font-weight:600;
+}
+
+/* TITLE */
+.hero-title{
+  font-family:'Cormorant Garamond', serif;
+  font-size:clamp(80px, 12vw, 170px);
+  line-height:0.9;
+  color:#f8f8f8;
+  margin-bottom:24px;
+  font-weight:600;
+}
+
+/* SUB */
+.hero-sub{
+  font-size:28px;
+  color:white;
+  margin-bottom:10px;
+  font-weight:300;
+}
+
+/* ITALIC TEXT */
+.hero-sub-italic{
+  display:block;
+  font-family:'Cormorant Garamond', serif;
+  font-size:38px;
+  color:#d8c7a3;
+  margin-bottom:40px;
+}
+
+/* BUTTON */
+.btn-primary{
+  display:inline-block;
+  padding:16px 34px;
+  background:#d8c7a3;
+  color:#111;
+  text-decoration:none;
+  border-radius:4px;
+  font-weight:600;
+  transition:0.3s ease;
+}
+
+.btn-primary:hover{
+  background:#f1e4c8;
+  transform:translateY(-3px);
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+  .hero{
+    justify-content:center;
+    text-align:center;
+    padding:0 24px;
+
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.65),
+        rgba(0,0,0,0.88)
+      ),
+      url("hero.png");
+
+    background-size:cover;
+    background-position:center;
+  }
+
+  .hero-content{
+    max-width:100%;
+  }
+
+  .hero-sub{
+    font-size:22px;
+  }
+
+  .hero-sub-italic{
+    font-size:30px;
+  }
+}
+ 
+  .story-img-main picture,
+  .story-img-secondary picture,
+  .lookbook-figure picture {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  
+  .story-img-main img,
+  .story-img-secondary img,
+  .lookbook-figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ─── OUR STORY ─── */
+  .story {
+    background: var(--cream);
+    color: var(--black);
+    padding: 100px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+  }
+
+  .story-images {
+    position: relative;
+    height: 420px;
+  }
+
+  .story-img-main {
+    width: 80%;
+    height: 320px;
+    background: linear-gradient(135deg, #4a4035 0%, #2a2018 100%);
+    position: absolute;
+    top: 0; left: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .story-img-secondary {
+    width: 48%;
+    height: 200px;
+    background: linear-gradient(135deg, #3a3025 0%, #1a1510 100%);
+    position: absolute;
+    bottom: 0; right: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .img-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 4px;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* Floral decoration */
+  .story-floral {
+    position: absolute;
+    right: -20px;
+    bottom: 40px;
+    opacity: 0.12;
+    font-size: 200px;
+    line-height: 1;
+    color: var(--black);
+    pointer-events: none;
+    font-family: serif;
+  }
+
+  .story-content {}
+
+  .story-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .story-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+
+  .story-title-italic {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(32px, 4vw, 52px);
+    line-height: 1.2;
+    color: var(--black);
+    margin-bottom: 28px;
+    display: block;
+  }
+
+  .story-body {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 2;
+    color: #333;
+    margin-bottom: 36px;
+  }
+
+  .btn-dark {
+    display: inline-block;
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    text-decoration: none;
+    transition: background 0.25s, transform 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-dark:hover { background: #333; transform: translateY(-1px); }
+
+  /* ─── PRODUCTS ─── */
+  .products {
+    background: var(--dark);
+    padding: 80px 60px;
+  }
+
+  .products-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 48px;
+  }
+
+  .products-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .products-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .view-all {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: var(--white);
+    text-decoration: none;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+  }
+  .view-all:hover { color: var(--gold); border-color: var(--gold); }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .product-card {
+    background: #161616;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  .product-card:hover { transform: translateY(-4px); }
+
+  .product-img {
+    width: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+.product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+  .hoodie-gray  { background: linear-gradient(145deg, #3a3a3a 0%, #222 100%); }
+  .hoodie-red   { background: linear-gradient(145deg, #6b1a1a 0%, #3a0a0a 100%); }
+  .hoodie-blue  { background: linear-gradient(145deg, #1a2f6b 0%, #0a1a3a 100%); }
+  .hoodie-violet{ background: linear-gradient(145deg, #3a1a6b 0%, #1a0a3a 100%); }
+
+  .hoodie-svg {
+    width: 65%;
+    height: 65%;
+    opacity: 0.85;
+  }
+
+  .product-info {
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .product-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.5px;
+  }
+
+  .product-price {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--gray);
+    margin-top: 3px;
+  }
+
+  .add-to-cart {
+    width: 36px; height: 36px;
+    background: var(--gold);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    flex-shrink: 0;
+  }
+  .add-to-cart:hover { background: var(--gold-light); transform: scale(1.1); }
+  .add-to-cart svg { width: 16px; height: 16px; stroke: var(--black); fill: none; }
+
+  /* ─── LOOKBOOK ─── */
+  .lookbook {
+    position: relative;
+    height: 520px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    background: linear-gradient(to right, rgba(0,0,0,0.85) 45%, rgba(0,0,0,0.1) 100%), #1a1510;
+  }
+
+  .lookbook-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+      linear-gradient(to right, rgba(0,0,0,0.9) 40%, transparent 80%),
+      radial-gradient(ellipse at 75% 50%, #2a2010 0%, #0a0a0a 60%);
+  }
+
+  .lookbook-figure {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .lookbook-content {
+    position: relative;
+    z-index: 2;
+    padding: 60px;
+    padding-bottom: 80px;
+    max-width: 500px;
+  }
+
+  .lookbook-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .lookbook-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(60px, 9vw, 120px);
+    line-height: 0.9;
+    letter-spacing: 3px;
+    color: var(--white);
+    margin-bottom: 28px;
+  }
+
+  .lookbook-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .lookbook-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+  }
+
+  .lookbook-btn-wrap {
+    position: absolute;
+    right: 60px;
+    bottom: 60px;
+    z-index: 3;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #080808;
+    padding: 70px 60px 30px;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 2fr;
+    gap: 40px;
+    margin-bottom: 60px;
+  }
+
+  .footer-brand {}
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 3px;
+    color: var(--white);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .footer-tagline {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .footer-socials {
+    display: flex;
+    gap: 14px;
+  }
+
+  .footer-socials a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px; height: 32px;
+    border: 1px solid rgba(255,255,255,0.15);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .footer-socials a:hover { border-color: var(--gold); background: rgba(184,151,90,0.1); }
+  .footer-socials svg { width: 14px; height: 14px; stroke: var(--white); fill: none; }
+
+  .footer-col h4 {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 12px; }
+  .footer-col ul a {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-col ul a:hover { color: var(--white); }
+
+  .newsletter-col h4 {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+
+  .newsletter-text {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .newsletter-form {
+    display: flex;
+  }
+
+  .newsletter-input {
+    flex: 1;
+    background: #111;
+    border: 1px solid #222;
+    border-right: none;
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    padding: 12px 16px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .newsletter-input::placeholder { color: #444; }
+  .newsletter-input:focus { border-color: var(--gold); }
+
+  .newsletter-btn {
+    background: var(--gold);
+    border: none;
+    width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+  .newsletter-btn:hover { background: var(--gold-light); }
+  .newsletter-btn svg { width: 16px; height: 16px; stroke: var(--black); fill: none; }
+
+  .footer-bottom {
+    border-top: 1px solid #1a1a1a;
+    padding-top: 28px;
+    text-align: center;
+  }
+
+  .footer-copy {
+    font-size: 11px;
+    font-weight: 300;
+    color: #444;
+    letter-spacing: 1px;
+  }
+
+  /* ─── HOODIE SVG ─── */
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#" class="nav-logo">FIZYX</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="boutique.html">Boutique</a></li>
+    <li><a href="collections.html">Collections</a></li>
+    <li><a href="#story">À propos</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-icons">
+    <svg viewBox="0 0 24 24" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <div class="cart-badge">
+      <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="badge">0</span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-eyebrow">Saison 2026</span>
+
+    <h1 class="hero-title">FIZYX</h1>
+
+    <p class="hero-sub">
+      Not just clothing.
+    </p>
+
+    <em class="hero-sub-italic">
+      A state of mind.
+    </em>
+
+    <a href="#" class="btn-primary">
+      Découvrir la collection
+    </a>
+  </div>
+</section>
+
+<!-- OUR STORY -->
+<section id="story" class="story">
+  <div class="story-images">
+    <div class="story-img-main">
+      <picture>
+        <source type="image/png" srcset="story.png">
+        <img src="story.png" alt="Story section illustration">
+      </picture>
+    </div>
+    <div class="story-img-secondary">
+      <picture>
+        <source type="image/png" srcset="lookbook.png">
+        <img src="lookbook.png" alt="Story secondary illustration">
+      </picture>
+    </div>
+    <!-- Floral decoration -->
+    <div class="story-floral">❧</div>
+  </div>
+
+  <div class="story-content">
+    <span class="story-tag">Our Story</span>
+    <h2 class="story-title">Built on passion.</h2>
+    <em class="story-title-italic">Driven by purpose.</em>
+    <p class="story-body">
+      FIZYX was born from the idea that streetwear<br>
+      should feel emotional, not mass-produced.<br>
+      Each piece we create carries a message,<br>
+      a feeling, a moment.<br>
+      This is more than clothing.<br>
+      This is FIZYX.
+    </p>
+    <a href="#" class="btn-dark">En savoir plus</a>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products">
+  <div class="products-header">
+    <div>
+      <span class="products-tag">Featured Products</span>
+      <h2 class="products-title">Nos Best-Sellers</h2>
+    </div>
+    <a href="#" class="view-all">Voir toute la collection &rarr;</a>
+  </div>
+
+  <div class="products-grid">
+    <!-- Hoodie Gris -->
+    <div class="product-card">
+      <div class="product-img hoodie-gray">
+        <img src="WhatsApp Image 2026-05-08 at 16.14.14.jpeg" alt="">
+      </div>
+      <div class="product-info">
+        <div>
+          <div class="product-name">Hoodie Gris</div>
+          <div class="product-price">250 DH</div>
+        </div>
+        <button class="add-to-cart">
+          <svg viewBox="0 0 24 24" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Hoodie Rouge -->
+    <div class="product-card">
+      <div class="product-img hoodie-red">
+        <svg class="hoodie-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <defs><radialGradient id="hr1" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#8b2020"/><stop offset="100%" stop-color="#3a0a0a"/></radialGradient></defs>
+          <path d="M60 80 C50 85 40 95 38 115 L32 185 L168 185 L162 115 C160 95 150 85 140 80 L128 74 C125 84 114 90 100 90 C86 90 75 84 72 74Z" fill="url(#hr1)"/>
+          <path d="M72 70 C70 60 68 50 70 42 C74 28 84 18 100 15 C116 18 126 28 130 42 C132 50 130 60 128 70" fill="#7a1a1a"/>
+          <path d="M40 82 L22 140 L36 144 L56 90Z" fill="#7a1a1a"/>
+          <path d="M160 82 L178 140 L164 144 L144 90Z" fill="#7a1a1a"/>
+          <rect x="58" y="38" width="84" height="10" rx="5" fill="#5a1010"/>
+          <path d="M62 42 C62 26 76 14 100 11 C124 14 138 26 138 42Z" fill="#3a0808"/>
+          <text x="100" y="148" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#b8975a" opacity="0.5" letter-spacing="2">FIZYX</text>
+          <circle cx="100" cy="132" r="18" stroke="#b8975a" stroke-width="0.5" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="product-info">
+        <div>
+          <div class="product-name">Hoodie Rouge</div>
+          <div class="product-price">250 DH</div>
+        </div>
+        <button class="add-to-cart">
+          <svg viewBox="0 0 24 24" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Hoodie Bleu -->
+    <div class="product-card">
+      <div class="product-img hoodie-blue">
+        <svg class="hoodie-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <defs><radialGradient id="hb1" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#2040a0"/><stop offset="100%" stop-color="#0a1845"/></radialGradient></defs>
+          <path d="M60 80 C50 85 40 95 38 115 L32 185 L168 185 L162 115 C160 95 150 85 140 80 L128 74 C125 84 114 90 100 90 C86 90 75 84 72 74Z" fill="url(#hb1)"/>
+          <path d="M72 70 C70 60 68 50 70 42 C74 28 84 18 100 15 C116 18 126 28 130 42 C132 50 130 60 128 70" fill="#1a3080"/>
+          <path d="M40 82 L22 140 L36 144 L56 90Z" fill="#1a3080"/>
+          <path d="M160 82 L178 140 L164 144 L144 90Z" fill="#1a3080"/>
+          <rect x="58" y="38" width="84" height="10" rx="5" fill="#122060"/>
+          <path d="M62 42 C62 26 76 14 100 11 C124 14 138 26 138 42Z" fill="#0a1440"/>
+          <text x="100" y="148" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#b8975a" opacity="0.5" letter-spacing="2">FIZYX</text>
+          <circle cx="100" cy="132" r="18" stroke="#b8975a" stroke-width="0.5" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="product-info">
+        <div>
+          <div class="product-name">Hoodie Bleu</div>
+          <div class="product-price">214,99 DH</div>
+        </div>
+        <button class="add-to-cart">
+          <svg viewBox="0 0 24 24" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Hoodie Violet -->
+    <div class="product-card">
+      <div class="product-img hoodie-violet">
+      <img src="story.png" alt="">
+      </div>
+      <div class="product-info">
+        <div>
+          <div class="product-name">Hoodie Violet</div>
+          <div class="product-price">214,99 DH</div>
+        </div>
+        <button class="add-to-cart">
+          <svg viewBox="0 0 24 24" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOOKBOOK -->
+<section class="lookbook">
+  <div class="lookbook-bg"></div>
+
+  <!-- Right side model figure -->
+  <div class="lookbook-figure">
+    <picture>
+      <source type="image/png" srcset="lookbook.png">
+      <img src="lookbook.png" alt="Lookbook illustration">
+    </picture>
+  </div>
+
+  <div class="lookbook-content">
+    <span class="lookbook-tag">Lookbook</span>
+    <h2 class="lookbook-title">WINTER<br>DROP<br>2026</h2>
+    <div class="lookbook-divider"></div>
+    <p class="lookbook-sub">
+      Crafted for silence.<br>
+      Designed for presence.
+    </p>
+  </div>
+
+  <div class="lookbook-btn-wrap">
+    <a href="#" class="btn-primary">Découvrir le lookbook</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="footer-logo">FIZYX</span>
+      <p class="footer-tagline">Streetwear designed<br>with emotion.</p>
+      <div class="footer-socials">
+        <!-- Instagram -->
+        <a href="#">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <!-- Twitter/X -->
+        <a href="#">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+        </a>
+        <!-- YouTube -->
+        <a href="#">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor"/></svg>
+        </a>
+        <!-- Facebook -->
+        <a href="#">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Liens</h4>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="boutique.html">Boutique</a></li>
+        <li><a href="collections.html">Collections</a></li>
+        <li><a href="#story">À propos</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Aide</h4>
+      <ul>
+        <li><a href="aide.html#faq">FAQ</a></li>
+        <li><a href="aide.html#livraison">Livraison</a></li>
+        <li><a href="aide.html#retours">Retours</a></li>
+        <li><a href="aide.html#guide-des-tailles">Guide des tailles</a></li>
+        <li><a href="aide.html#conditions-d-utilisation">Conditions d'utilisation</a></li>
+      </ul>
+    </div>
+
+    <div class="newsletter-col">
+      <h4>Newsletter</h4>
+      <p class="newsletter-text">Rejoins la famille FIZYX.<br>Sois le premier informé.</p>
+      <div class="newsletter-form">
+        <input type="email" class="newsletter-input" placeholder="Ton email">
+        <button class="newsletter-btn">
+          <svg viewBox="0 0 24 24" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2024 FIZYX. Tous droits réservés.</p>
+  </div>
+</footer>
+
+<script>
+  // Cart interaction
+  document.querySelectorAll('.add-to-cart').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const badge = document.querySelector('.badge');
+      badge.textContent = parseInt(badge.textContent) + 1;
+      this.style.transform = 'scale(1.3)';
+      setTimeout(() => this.style.transform = '', 300);
+    });
+  });
+
+  // Smooth nav on scroll
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      nav.style.background = 'rgba(5,5,5,0.98)';
+      nav.style.boxShadow = '0 1px 30px rgba(0,0,0,0.5)';
+    } else {
+      nav.style.background = 'rgba(10,10,10,0.95)';
+      nav.style.boxShadow = 'none';
+    }
+  });
+</script>
+</body>
+</html>

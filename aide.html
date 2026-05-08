@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aide — FIZYX</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+:root{
+  --black:#0a0a0a;
+  --dark:#111;
+  --gold:#b8975a;
+  --gold-light:#d6b173;
+  --white:#fff;
+  --gray:#888;
+  --card:#151515;
+}
+
+body{
+  background:var(--black);
+  color:var(--white);
+  font-family:'Montserrat',sans-serif;
+  overflow-x:hidden;
+}
+
+/* NAVBAR */
+
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 40px;
+  background:rgba(0,0,0,0.95);
+  backdrop-filter:blur(10px);
+  z-index:999;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.logo{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:32px;
+  letter-spacing:4px;
+  text-decoration:none;
+  color:var(--white);
+}
+
+.nav-links{
+  display:flex;
+  gap:30px;
+  list-style:none;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:rgba(255,255,255,0.7);
+  font-size:12px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  transition:0.3s;
+}
+
+.nav-links a:hover{
+  color:var(--gold);
+}
+
+/* HERO */
+
+.hero{
+  height:55vh;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  overflow:hidden;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=1600&auto=format&fit=crop') center/cover;
+  filter:brightness(0.35);
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to bottom,
+  rgba(0,0,0,0.4),
+  rgba(0,0,0,0.9));
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  padding:20px;
+}
+
+.hero-sub{
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:4px;
+  font-size:10px;
+  margin-bottom:20px;
+}
+
+.hero-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(70px,10vw,140px);
+  letter-spacing:5px;
+  line-height:0.9;
+}
+
+.hero-text{
+  margin-top:18px;
+  color:rgba(255,255,255,0.65);
+  max-width:650px;
+  line-height:1.8;
+  font-size:14px;
+}
+
+/* SECTION */
+
+.section{
+  padding:100px 60px;
+}
+
+.section-header{
+  text-align:center;
+  margin-bottom:70px;
+}
+
+.section-sub{
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:4px;
+  font-size:10px;
+  margin-bottom:15px;
+}
+
+.section-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:58px;
+  letter-spacing:3px;
+}
+
+.section-text{
+  margin:auto;
+  margin-top:18px;
+  max-width:700px;
+  color:rgba(255,255,255,0.6);
+  line-height:1.9;
+  font-size:14px;
+}
+
+/* HELP GRID */
+
+.help-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:28px;
+}
+
+.help-card{
+  background:var(--card);
+  padding:40px 35px;
+  border:1px solid rgba(255,255,255,0.05);
+  transition:0.4s;
+  position:relative;
+  overflow:hidden;
+}
+
+.help-card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:0;
+  height:2px;
+  background:var(--gold);
+  transition:0.4s;
+}
+
+.help-card:hover::before{
+  width:100%;
+}
+
+.help-card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(184,151,90,0.3);
+}
+
+.help-icon{
+  width:65px;
+  height:65px;
+  border-radius:50%;
+  background:rgba(184,151,90,0.08);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  margin-bottom:24px;
+}
+
+.help-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:34px;
+  letter-spacing:2px;
+  margin-bottom:16px;
+}
+
+.help-desc{
+  color:rgba(255,255,255,0.6);
+  line-height:1.9;
+  font-size:14px;
+  margin-bottom:28px;
+}
+
+.help-btn{
+  display:inline-block;
+  padding:14px 24px;
+  background:var(--gold);
+  color:var(--black);
+  text-decoration:none;
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  font-weight:700;
+  transition:0.3s;
+}
+
+.help-btn:hover{
+  background:var(--gold-light);
+  transform:translateY(-2px);
+}
+
+/* FAQ */
+
+.faq{
+  margin-top:120px;
+}
+
+.faq-item{
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  padding:28px 0;
+}
+
+.faq-question{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  cursor:pointer;
+}
+
+.faq-question h3{
+  font-size:18px;
+  font-weight:500;
+}
+
+.faq-icon{
+  font-size:24px;
+  color:var(--gold);
+}
+
+.faq-answer{
+  margin-top:18px;
+  color:rgba(255,255,255,0.6);
+  line-height:1.8;
+  display:none;
+  max-width:850px;
+}
+
+.faq-item.active .faq-answer{
+  display:block;
+}
+
+/* CONTACT */
+
+.contact-box{
+  margin-top:100px;
+  background:linear-gradient(135deg,#1a1500,#0a0a0a);
+  padding:60px;
+  text-align:center;
+  border:1px solid rgba(184,151,90,0.12);
+}
+
+.contact-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:60px;
+  letter-spacing:3px;
+}
+
+.contact-text{
+  margin-top:20px;
+  color:rgba(255,255,255,0.6);
+  line-height:1.8;
+}
+
+.contact-btn{
+  margin-top:35px;
+  display:inline-block;
+  padding:16px 34px;
+  background:var(--gold);
+  color:var(--black);
+  text-decoration:none;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:11px;
+  font-weight:700;
+  transition:0.3s;
+}
+
+.contact-btn:hover{
+  background:var(--gold-light);
+}
+
+/* FOOTER */
+
+footer{
+  margin-top:120px;
+  padding:40px;
+  text-align:center;
+  border-top:1px solid rgba(255,255,255,0.05);
+  color:rgba(255,255,255,0.4);
+  font-size:12px;
+}
+/* SIZE GUIDE TABLE */
+
+.size-guide-table{
+  margin-top:100px;
+}
+
+.table-wrapper{
+  overflow-x:auto;
+  margin-top:40px;
+  border:1px solid rgba(255,255,255,0.06);
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  background:#151515;
+  min-width:700px;
+}
+
+thead{
+  background:#1d1d1d;
+}
+
+th{
+  padding:22px;
+  text-align:left;
+  color:#b8975a;
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+
+td{
+  padding:22px;
+  color:rgba(255,255,255,0.75);
+  font-size:14px;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+tr{
+  transition:0.3s;
+}
+
+tbody tr:hover{
+  background:rgba(184,151,90,0.05);
+}
+
+tbody tr:last-child td{
+  border-bottom:none;
+}
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+  nav{
+    padding:0 20px;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
+  .section{
+    padding:80px 20px;
+  }
+
+  .section-title{
+    font-size:42px;
+  }
+
+  .contact-box{
+    padding:40px 25px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+  <a href="index.html" class="logo">FIZYX</a>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="boutique.html">Boutique</a></li>
+    <li><a href="collections.html">Collections</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+
+    <div class="hero-sub">
+      Centre d'aide
+    </div>
+
+    <h1 class="hero-title">
+      AIDE
+    </h1>
+
+    <p class="hero-text">
+      Besoin d’aide concernant une commande, une livraison,
+      un retour ou nos tailles ? Nous sommes là pour vous.
+    </p>
+
+  </div>
+
+</section>
+
+<!-- HELP SECTION -->
+
+<section class="section">
+
+  <div class="section-header">
+
+    <div class="section-sub">
+      Support
+    </div>
+
+    <h2 class="section-title">
+      Comment pouvons-nous aider ?
+    </h2>
+
+    <p class="section-text">
+      Retrouvez toutes les informations essentielles concernant
+      vos commandes et votre expérience FIZYX.
+    </p>
+
+  </div>
+
+  <div class="help-grid">
+
+    <div class="help-card">
+
+      <div class="help-icon">
+        ❓
+      </div>
+
+      <div class="help-title">
+        FAQ
+      </div>
+
+      <p class="help-desc">
+        Consulte les réponses aux questions les plus fréquentes.
+      </p>
+
+      <a href="#" class="help-btn">
+        Voir plus
+      </a>
+
+    </div>
+
+    <div class="help-card">
+
+      <div class="help-icon">
+        🚚
+      </div>
+
+      <div class="help-title">
+        Livraison
+      </div>
+
+      <p class="help-desc">
+        Suis ta commande et découvre nos délais de livraison.
+      </p>
+
+      <a href="#" class="help-btn">
+        Voir plus
+      </a>
+
+    </div>
+
+    <div class="help-card">
+
+      <div class="help-icon">
+        ↩️
+      </div>
+
+      <div class="help-title">
+        Retours
+      </div>
+
+      <p class="help-desc">
+        Consulte les conditions et procédures de retour.
+      </p>
+
+      <a href="#retours" class="help-btn">
+        Voir plus
+      </a>
+
+    </div>
+
+    <div class="help-card">
+
+      <div class="help-icon">
+        📏
+      </div>
+
+      <div class="help-title">
+        Guide des tailles
+      </div>
+
+      <p class="help-desc">
+        Trouve la taille parfaite grâce à notre guide détaillé.
+      </p>
+
+      <a href="#" class="help-btn">
+        Voir plus
+      </a>
+
+    </div>
+
+    <div class="help-card">
+
+      <div class="help-icon">
+        📜
+      </div>
+
+      <div class="help-title">
+        Conditions
+      </div>
+
+      <p class="help-desc">
+        Consulte nos conditions générales d’utilisation.
+      </p>
+
+      <a href="#" class="help-btn">
+        Voir plus
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- FAQ -->
+
+  <div class="faq">
+
+    <div class="section-header">
+
+      <div class="section-sub">
+        Questions fréquentes
+      </div>
+
+      <h2 class="section-title">
+        FAQ
+      </h2>
+
+    </div>
+
+    <div class="faq-item active">
+
+      <div class="faq-question">
+        <h3>Combien de temps prend la livraison ?</h3>
+        <span class="faq-icon">+</span>
+      </div>
+
+      <div class="faq-answer">
+        Les commandes sont généralement livrées sous 2 à 5 jours ouvrables.
+      </div>
+
+    </div>
+
+    <div class="faq-item">
+
+      <div class="faq-question">
+        <h3>Puis-je retourner un produit ?</h3>
+        <span class="faq-icon">+</span>
+      </div>
+
+      <div class="faq-answer">
+        Oui, vous pouvez retourner un produit sous 14 jours après réception.
+      </div>
+
+    </div>
+
+    <div class="faq-item">
+
+      <div class="faq-question">
+        <h3>Les paiements sont-ils sécurisés ?</h3>
+        <span class="faq-icon">+</span>
+      </div>
+
+      <div class="faq-answer">
+        Toutes les transactions sont protégées et sécurisées.
+      </div>
+
+    </div>
+<!-- SIZE GUIDE TABLE -->
+
+<div class="size-guide-table">
+
+  <div class="section-header" style="margin-top:120px;">
+
+    <div class="section-sub">
+      Guide des tailles
+    </div>
+
+    <h2 class="section-title">
+      Trouve ta taille parfaite
+    </h2>
+
+    <p class="section-text">
+      Consulte notre tableau des tailles pour choisir
+      la coupe idéale selon tes mesures.
+    </p>
+
+  </div>
+
+  <div class="table-wrapper">
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>Taille</th>
+          <th>Poitrine</th>
+          <th>Taille</th>
+          <th>Hanches</th>
+          <th>Coupe</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td>XS</td>
+          <td>84 - 88 cm</td>
+          <td>68 - 72 cm</td>
+          <td>84 - 88 cm</td>
+          <td>Très ajustée</td>
+        </tr>
+
+        <tr>
+          <td>S</td>
+          <td>89 - 94 cm</td>
+          <td>73 - 78 cm</td>
+          <td>89 - 94 cm</td>
+          <td>Ajustée</td>
+        </tr>
+
+        <tr>
+          <td>M</td>
+          <td>95 - 100 cm</td>
+          <td>79 - 84 cm</td>
+          <td>95 - 100 cm</td>
+          <td>Standard</td>
+        </tr>
+
+        <tr>
+          <td>L</td>
+          <td>101 - 106 cm</td>
+          <td>85 - 90 cm</td>
+          <td>101 - 106 cm</td>
+          <td>Relax</td>
+        </tr>
+
+        <tr>
+          <td>XL</td>
+          <td>107 - 114 cm</td>
+          <td>91 - 98 cm</td>
+          <td>107 - 114 cm</td>
+          <td>Oversized</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
+  </div>
+
+  <!-- CONTACT -->
+
+  <div class="contact-box">
+
+    <h2 class="contact-title">
+      Besoin d’assistance ?
+    </h2>
+
+    <p class="contact-text">
+      Notre équipe est disponible pour répondre à toutes vos questions.
+    </p>
+
+    <a href="#" class="contact-btn">
+      Contacter le support
+    </a>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+  © 2026 FIZYX — Tous droits réservés
+
+</footer>
+
+<script>
+
+const faqItems = document.querySelectorAll('.faq-item');
+
+faqItems.forEach(item => {
+
+  item.addEventListener('click', () => {
+
+    item.classList.toggle('active');
+
+  });
+
+});
+
+</script>
+
+</body>
+</html>
