@@ -76,11 +76,38 @@ nav{
 .nav-links a:hover{
   color:var(--gold);
 }
+  .nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
 
-.nav-icons{
-  display:flex;
-  gap:18px;
-}
+  .nav-icons svg {
+    width: 20px; height: 20px;
+    stroke: var(--white);
+    fill: none;
+    cursor: pointer;
+    transition: stroke 0.2s;
+  }
+  .nav-icons svg:hover { stroke: var(--gold); }
+
+  .cart-badge {
+    position: relative;
+  }
+  .cart-badge .badge {
+    position: absolute;
+    top: -6px; right: -6px;
+    background: var(--gold);
+    color: var(--black);
+    font-size: 9px;
+    font-weight: 700;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
 
 .icon{
   width:38px;
@@ -429,7 +456,14 @@ footer{
   color:rgba(255,255,255,0.35);
   font-size:12px;
 }
+.category-btn.active{
+  background: white;
+  color: black;
+}
 
+.product-card{
+  transition: 0.3s ease;
+}
 /* RESPONSIVE */
 
 @media(max-width:900px){
@@ -495,11 +529,14 @@ footer{
     <li><a href="#contact">Contact</a></li>
   </ul>
 
-  <div class="nav-icons">
-    <div class="icon">♡</div>
-    <div class="icon">🛒</div>
+ <div class="nav-icons">
+    <div class="cart-badge">
+      <a href="cart.html">
+  🛒
+</a>
+      
+    </div>
   </div>
-
 </nav>
 
 <!-- HERO -->
@@ -551,206 +588,1191 @@ footer{
 
   <!-- CATEGORY BUTTONS -->
 
-  <div class="categories">
+  <!-- CATEGORIES -->
 
-    <button class="category-btn active">Tous</button>
-    <button class="category-btn">Hoodies</button>
-    <button class="category-btn">T-Shirts</button>
-    <button class="category-btn">Pantalons</button>
-    <button class="category-btn">Sneakers</button>
-    <button class="category-btn">Accessoires</button>
+<div class="categories">
 
-  </div>
+  <button class="category-btn active" data-filter="Tous">Tous</button>
+  <button class="category-btn" data-filter="Hoodie">Hoodies</button>
+  <button class="category-btn" data-filter="T-Shirt">T-Shirts</button>
+  <button class="category-btn" data-filter="Pantalon">Pantalons</button>
+  <button class="category-btn" data-filter="Sneakers">Sneakers</button>
+  <button class="category-btn" data-filter="Accessoires">Accessoires</button>
 
-  <!-- PRODUCTS -->
+</div>
 
-  <div class="products-grid">
+<div class="products-grid">
 
-    <!-- PRODUCT -->
+  <!-- PRODUCT -->
 
-    <div class="product-card">
+  <div class="product-card" data-category="Hoodie">
 
-      <img 
-      src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop"
-      class="product-image">
+    <img 
+    src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop"
+    class="product-image">
 
-      <div class="product-content">
+    <div class="product-content">
 
-        <div class="product-category">
-          Hoodie
-        </div>
-
-        <div class="product-name">
-          Shadow Hoodie
-        </div>
-
-        <p class="product-desc">
-          Hoodie premium oversized avec finition minimaliste.
-        </p>
-
-        <div class="product-bottom">
-
-          <div class="price">
-            899 DH
-          </div>
-
-          <button class="buy-btn">
-            Commander
-          </button>
-
-        </div>
-
+      <div class="product-category">
+        Hoodie
       </div>
 
-    </div>
-
-    <!-- PRODUCT -->
-
-    <div class="product-card">
-
-      <img 
-      src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=1200&auto=format&fit=crop"
-      class="product-image">
-
-      <div class="product-content">
-
-        <div class="product-category">
-          T-Shirt
-        </div>
-
-        <div class="product-name">
-          Noir Essential
-        </div>
-
-        <p class="product-desc">
-          T-shirt streetwear épuré conçu pour un look moderne.
-        </p>
-
-        <div class="product-bottom">
-
-          <div class="price">
-            399 DH
-          </div>
-
-          <button class="buy-btn">
-            Commander
-          </button>
-
-        </div>
-
+      <div class="product-name">
+        Shadow Hoodie
       </div>
 
-    </div>
-
-    <!-- PRODUCT -->
-
-    <div class="product-card">
-
-      <img 
-      src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop"
-      class="product-image">
-
-      <div class="product-content">
-
-        <div class="product-category">
-          Sneakers
-        </div>
-
-        <div class="product-name">
-          Urban Runner
-        </div>
-
-        <p class="product-desc">
-          Sneakers modernes pensées pour le confort et le style.
-        </p>
-
-        <div class="product-bottom">
-
-          <div class="price">
-            1499 DH
-          </div>
-
-          <button class="buy-btn">
-            Commander
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- PRODUCT -->
-
-    <div class="product-card">
-
-      <img 
-      src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop"
-      class="product-image">
-
-      <div class="product-content">
-
-        <div class="product-category">
-          Pantalon
-        </div>
-
-        <div class="product-name">
-          Cargo Elite
-        </div>
-
-        <p class="product-desc">
-          Cargo oversized inspiré du luxe streetwear japonais.
-        </p>
-
-        <div class="product-bottom">
-
-          <div class="price">
-            799 DH
-          </div>
-
-          <button class="buy-btn">
-            Commander
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-  <!-- FEATURED -->
-
-  <div class="featured">
-
-    <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1600&auto=format&fit=crop">
-
-    <div class="featured-content">
-
-      <div class="featured-sub">
-        Collection Exclusive
-      </div>
-
-      <h2 class="featured-title">
-        Winter<br>
-        Drop 2026
-      </h2>
-
-      <p class="featured-text">
-        Une collection créée pour ceux qui veulent porter plus
-        qu’un simple vêtement.
-        Chaque pièce reflète une identité,
-        une émotion et une présence.
+      <p class="product-desc">
+        Hoodie premium oversized avec finition minimaliste.
       </p>
 
-      <a href="#" class="featured-btn">
-        Découvrir
-      </a>
+      <div class="product-bottom">
+
+        <div class="price">
+          899 DH
+        </div>
+
+    <button 
+class="buy-btn"
+onclick="addToCart(
+'Shadow Hoodie',
+899,
+'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop',
+'Hoodie'
+)">
+Commander
+</button>
+
+      </div>
 
     </div>
 
   </div>
+  <div class="product-card" data-category="Hoodie">
+
+    <img 
+    src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop"
+    class="product-image">
+
+    <div class="product-content">
+
+      <div class="product-category">
+        Hoodie
+      </div>
+
+      <div class="product-name">
+        Shadow Hoodie
+      </div>
+
+      <p class="product-desc">
+        Hoodie premium oversized avec finition minimaliste.
+      </p>
+
+      <div class="product-bottom">
+
+        <div class="price">
+          899 DH
+        </div>
+<button 
+class="buy-btn"
+onclick="addToCart(
+'Shadow Hoodie',
+899,
+'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop',
+'Hoodie'
+)">
+Commander
+</button>
+
+      </div>
+
+    </div>
+
+  </div>
+  
+  <div class="product-card" data-category="Hoodie">
+
+    <img 
+    src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop"
+    class="product-image">
+
+    <div class="product-content">
+
+      <div class="product-category">
+        Hoodie
+      </div>
+
+      <div class="product-name">
+        Shadow Hoodie
+      </div>
+
+      <p class="product-desc">
+        Hoodie premium oversized avec finition minimaliste.
+      </p>
+
+      <div class="product-bottom">
+
+        <div class="price">
+          899 DH
+        </div>
+
+      <button 
+class="buy-btn"
+onclick="addToCart(
+'Shadow Hoodie',
+899,
+'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop',
+'Hoodie'
+)">
+Commander
+</button>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="product-card" data-category="Hoodie">
+
+    <img 
+    src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop"
+    class="product-image">
+
+    <div class="product-content">
+
+      <div class="product-category">
+        Hoodie
+      </div>
+
+      <div class="product-name">
+        Shadow Hoodie
+      </div>
+
+      <p class="product-desc">
+        Hoodie premium oversized avec finition minimaliste.
+      </p>
+
+      <div class="product-bottom">
+
+        <div class="price">
+          899 DH
+        </div>
+
+       <button 
+class="buy-btn"
+onclick="addToCart(
+'Shadow Hoodie',
+899,
+'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop',
+'Hoodie'
+)">
+Commander
+</button>
+
+      </div>
+
+    </div>
+
+  </div>
+  <div class="product-card" data-category="Hoodie">
+
+    <img 
+    src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop"
+    class="product-image">
+
+    <div class="product-content">
+
+      <div class="product-category">
+        Hoodie
+      </div>
+
+      <div class="product-name">
+        Shadow Hoodie
+      </div>
+
+      <p class="product-desc">
+        Hoodie premium oversized avec finition minimaliste.
+      </p>
+
+      <div class="product-bottom">
+
+        <div class="price">
+          899 DH
+        </div>
+
+       <button 
+class="buy-btn"
+onclick="addToCart(
+'Shadow Hoodie',
+899,
+'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop',
+'Hoodie'
+)">
+Commander
+</button>
+
+      </div>
+
+    </div>
+
+  </div>
+  <div class="product-card" data-category="Hoodie">
+
+    <img 
+    src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop"
+    class="product-image">
+
+    <div class="product-content">
+
+      <div class="product-category">
+        Hoodie
+      </div>
+
+      <div class="product-name">
+        Shadow Hoodie
+      </div>
+
+      <p class="product-desc">
+        Hoodie premium oversized avec finition minimaliste.
+      </p>
+
+      <div class="product-bottom">
+
+        <div class="price">
+          899 DH
+        </div>
+
+      <button 
+class="buy-btn"
+onclick="addToCart(
+'Shadow Hoodie',
+899,
+'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop',
+'Hoodie'
+)">
+Commander
+</button>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="product-card" data-category="Hoodie">
+
+    <img 
+    src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop"
+    class="product-image">
+
+    <div class="product-content">
+
+      <div class="product-category">
+        Hoodie
+      </div>
+
+      <div class="product-name">
+        Shadow Hoodie
+      </div>
+
+      <p class="product-desc">
+        Hoodie premium oversized avec finition minimaliste.
+      </p>
+
+      <div class="product-bottom">
+
+        <div class="price">
+          899 DH
+        </div>
+
+       <button 
+class="buy-btn"
+onclick="addToCart(
+'Shadow Hoodie',
+899,
+'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop',
+'Hoodie'
+)">
+Commander
+</button>
+      </div>
+
+    </div>
+
+  </div>
+  
+
+  <!-- PRODUCT -->
+
+  <div class="product-card" data-category="T-Shirt">
+
+    <img 
+    src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=1200&auto=format&fit=crop"
+    class="product-image">
+
+    <div class="product-content">
+
+      <div class="product-category">
+        T-Shirt
+      </div>
+
+      <div class="product-name">
+        Noir Essential
+      </div>
+
+      <p class="product-desc">
+        T-shirt streetwear épuré conçu pour un look moderne.
+      </p>
+
+      <div class="product-bottom">
+
+        <div class="price">
+          399 DH
+        </div>
+<button 
+class="buy-btn"
+onclick="addToCart(
+'Noir Essential',
+399,
+'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=1200&auto=format&fit=crop',
+'T-Shirt'
+)">
+Commander
+</button>
+
+      </div>
+
+    </div>
+
+  </div>
+ <div class="product-card" data-category="T-Shirt">
+
+    <img 
+    src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=1200&auto=format&fit=crop"
+    class="product-image">
+
+    <div class="product-content">
+
+      <div class="product-category">
+        T-Shirt
+      </div>
+
+      <div class="product-name">
+        Noir Essential
+      </div>
+
+      <p class="product-desc">
+        T-shirt streetwear épuré conçu pour un look moderne.
+      </p>
+
+      <div class="product-bottom">
+
+        <div class="price">
+          399 DH
+        </div>
+
+       <button 
+class="buy-btn"
+onclick="addToCart(
+'Noir Essential',
+399,
+'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=1200&auto=format&fit=crop',
+'T-Shirt'
+)">
+Commander
+</button>
+
+      </div>
+
+    </div>
+
+  </div>
+   <div class="product-card" data-category="T-Shirt">
+
+    <img 
+    src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=1200&auto=format&fit=crop"
+    class="product-image">
+
+    <div class="product-content">
+
+      <div class="product-category">
+        T-Shirt
+      </div>
+
+      <div class="product-name">
+        Noir Essential
+      </div>
+
+      <p class="product-desc">
+        T-shirt streetwear épuré conçu pour un look moderne.
+      </p>
+
+      <div class="product-bottom">
+
+        <div class="price">
+          399 DH
+        </div>
+
+        <button 
+class="buy-btn"
+onclick="addToCart(
+'Noir Essential',
+399,
+'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=1200&auto=format&fit=crop',
+'T-Shirt'
+)">
+Commander
+</button>
+
+      </div>
+
+    </div>
+
+  </div>
+   <div class="product-card" data-category="T-Shirt">
+
+    <img 
+    src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=1200&auto=format&fit=crop"
+    class="product-image">
+
+    <div class="product-content">
+
+      <div class="product-category">
+        T-Shirt
+      </div>
+
+      <div class="product-name">
+        Noir Essential
+      </div>
+
+      <p class="product-desc">
+        T-shirt streetwear épuré conçu pour un look moderne.
+      </p>
+
+      <div class="product-bottom">
+
+        <div class="price">
+          399 DH
+        </div>
+
+        <button 
+class="buy-btn"
+onclick="addToCart(
+'Noir Essential',
+399,
+'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=1200&auto=format&fit=crop',
+'T-Shirt'
+)">
+Commander
+</button>
+
+      </div>
+
+    </div>
+
+  </div>
+   <div class="product-card" data-category="T-Shirt">
+
+    <img 
+    src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=1200&auto=format&fit=crop"
+    class="product-image">
+
+    <div class="product-content">
+
+      <div class="product-category">
+        T-Shirt
+      </div>
+
+      <div class="product-name">
+        Noir Essential
+      </div>
+
+      <p class="product-desc">
+        T-shirt streetwear épuré conçu pour un look moderne.
+      </p>
+
+      <div class="product-bottom">
+
+        <div class="price">
+          399 DH
+        </div>
+
+    <button 
+class="buy-btn"
+onclick="addToCart(
+'Noir Essential',
+399,
+'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=1200&auto=format&fit=crop',
+'T-Shirt'
+)">
+Commander
+</button>
+      </div>
+
+    </div>
+
+  </div>
+   <div class="product-card" data-category="T-Shirt">
+
+    <img 
+    src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=1200&auto=format&fit=crop"
+    class="product-image">
+
+    <div class="product-content">
+
+      <div class="product-category">
+        T-Shirt
+      </div>
+
+      <div class="product-name">
+        Noir Essential
+      </div>
+
+      <p class="product-desc">
+        T-shirt streetwear épuré conçu pour un look moderne.
+      </p>
+
+      <div class="product-bottom">
+
+        <div class="price">
+          399 DH
+        </div>
+<button 
+class="buy-btn"
+onclick="addToCart(
+'Noir Essential',
+399,
+'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=1200&auto=format&fit=crop',
+'T-Shirt'
+)">
+Commander
+</button>
+
+      </div>
+
+    </div>
+
+  </div>
+  <!-- PRODUCT -->
+
+  <div class="product-card" data-category="Sneakers">
+
+    <img 
+    src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop"
+    class="product-image">
+
+    <div class="product-content">
+
+      <div class="product-category">
+        Sneakers
+      </div>
+
+      <div class="product-name">
+        Urban Runner
+      </div>
+
+      <p class="product-desc">
+        Sneakers modernes pensées pour le confort et le style.
+      </p>
+
+      <div class="product-bottom">
+
+        <div class="price">
+          1499 DH
+        </div>
+
+<button 
+class="buy-btn"
+onclick="addToCart(
+'Urban Runner',
+1499,
+'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop',
+'Sneakers'
+)">
+Commander
+</button>
+      </div>
+
+    </div>
+
+  </div>
+<div class="product-card" data-category="Sneakers">
+
+    <img 
+    src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop"
+    class="product-image">
+
+    <div class="product-content">
+
+      <div class="product-category">
+        Sneakers
+      </div>
+
+      <div class="product-name">
+        Urban Runner
+      </div>
+
+      <p class="product-desc">
+        Sneakers modernes pensées pour le confort et le style.
+      </p>
+
+      <div class="product-bottom">
+
+        <div class="price">
+          1499 DH
+        </div>
+
+       <button 
+class="buy-btn"
+onclick="addToCart(
+'Urban Runner',
+1499,
+'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop',
+'Sneakers'
+)">
+Commander
+</button>
+
+      </div>
+
+    </div>
+
+  </div>
+  <div class="product-card" data-category="Sneakers">
+
+    <img 
+    src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop"
+    class="product-image">
+
+    <div class="product-content">
+
+      <div class="product-category">
+        Sneakers
+      </div>
+
+      <div class="product-name">
+        Urban Runner
+      </div>
+
+      <p class="product-desc">
+        Sneakers modernes pensées pour le confort et le style.
+      </p>
+
+      <div class="product-bottom">
+
+        <div class="price">
+          1499 DH
+        </div>
+
+   <button 
+class="buy-btn"
+onclick="addToCart(
+'Urban Runner',
+1499,
+'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop',
+'Sneakers'
+)">
+Commander
+</button>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="product-card" data-category="Sneakers">
+
+    <img 
+    src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop"
+    class="product-image">
+
+    <div class="product-content">
+
+      <div class="product-category">
+        Sneakers
+      </div>
+
+      <div class="product-name">
+        Urban Runner
+      </div>
+
+      <p class="product-desc">
+        Sneakers modernes pensées pour le confort et le style.
+      </p>
+
+      <div class="product-bottom">
+
+        <div class="price">
+          1499 DH
+        </div>
+
+       <button 
+class="buy-btn"
+onclick="addToCart(
+'Urban Runner',
+1499,
+'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop',
+'Sneakers'
+)">
+Commander
+</button>
+
+      </div>
+
+    </div>
+
+  </div>
+  <div class="product-card" data-category="Sneakers">
+
+    <img 
+    src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop"
+    class="product-image">
+
+    <div class="product-content">
+
+      <div class="product-category">
+        Sneakers
+      </div>
+
+      <div class="product-name">
+        Urban Runner
+      </div>
+
+      <p class="product-desc">
+        Sneakers modernes pensées pour le confort et le style.
+      </p>
+
+      <div class="product-bottom">
+
+        <div class="price">
+          1499 DH
+        </div>
+
+       <button 
+class="buy-btn"
+onclick="addToCart(
+'Urban Runner',
+1499,
+'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop',
+'Sneakers'
+)">
+Commander
+</button>
+      </div>
+
+    </div>
+
+  </div>
+  <!-- PRODUCT -->
+
+  <div class="product-card" data-category="Pantalon">
+
+    <img 
+    src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop"
+    class="product-image">
+
+    <div class="product-content">
+
+      <div class="product-category">
+        Pantalon
+      </div>
+
+      <div class="product-name">
+        Cargo Elite
+      </div>
+
+      <p class="product-desc">
+        Cargo oversized inspiré du luxe streetwear japonais.
+      </p>
+
+      <div class="product-bottom">
+
+        <div class="price">
+          799 DH
+        </div>
+
+        <button 
+class="buy-btn"
+onclick="addToCart(
+'Cargo Elite',
+799,
+'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop',
+'Pantalon'
+)">
+Commander
+</button>
+
+      </div>
+
+    </div>
+
+  </div>
+ <div class="product-card" data-category="Pantalon">
+
+    <img 
+    src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop"
+    class="product-image">
+
+    <div class="product-content">
+
+      <div class="product-category">
+        Pantalon
+      </div>
+
+      <div class="product-name">
+        Cargo Elite
+      </div>
+
+      <p class="product-desc">
+        Cargo oversized inspiré du luxe streetwear japonais.
+      </p>
+
+      <div class="product-bottom">
+
+        <div class="price">
+          799 DH
+        </div>
+
+        <button 
+class="buy-btn"
+onclick="addToCart(
+'Cargo Elite',
+799,
+'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop',
+'Pantalon'
+)">
+Commander
+</button>
+
+      </div>
+
+    </div>
+
+</div>
+ <div class="product-card" data-category="Pantalon">
+
+    <img 
+    src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop"
+    class="product-image">
+
+    <div class="product-content">
+
+      <div class="product-category">
+        Pantalon
+      </div>
+
+      <div class="product-name">
+        Cargo Elite
+      </div>
+
+      <p class="product-desc">
+        Cargo oversized inspiré du luxe streetwear japonais.
+      </p>
+
+      <div class="product-bottom">
+
+        <div class="price">
+          799 DH
+        </div>
+
+      <button 
+class="buy-btn"
+onclick="addToCart(
+'Cargo Elite',
+799,
+'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop',
+'Pantalon'
+)">
+Commander
+</button>
+      </div>
+
+    </div>
+ </div>
+ <div class="product-card" data-category="Pantalon">
+
+    <img 
+    src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop"
+    class="product-image">
+
+    <div class="product-content">
+
+      <div class="product-category">
+        Pantalon
+      </div>
+
+      <div class="product-name">
+        Cargo Elite
+      </div>
+
+      <p class="product-desc">
+        Cargo oversized inspiré du luxe streetwear japonais.
+      </p>
+
+      <div class="product-bottom">
+
+        <div class="price">
+          799 DH
+        </div>
+
+       <button 
+class="buy-btn"
+onclick="addToCart(
+'Cargo Elite',
+799,
+'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop',
+'Pantalon'
+)">
+Commander
+</button>
+
+      </div>
+
+    </div>
+ </div><div class="product-card" data-category="Pantalon">
+
+    <img 
+    src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop"
+    class="product-image">
+
+    <div class="product-content">
+
+      <div class="product-category">
+        Pantalon
+      </div>
+
+      <div class="product-name">
+        Cargo Elite
+      </div>
+
+      <p class="product-desc">
+        Cargo oversized inspiré du luxe streetwear japonais.
+      </p>
+
+      <div class="product-bottom">
+
+        <div class="price">
+          799 DH
+        </div>
+
+       <button 
+class="buy-btn"
+onclick="addToCart(
+'Cargo Elite',
+799,
+'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop',
+'Pantalon'
+)">
+Commander
+</button>
+
+      </div>
+
+    </div>
+ </div>
+ 
+<div class="product-card" data-category="Accessoires">
+
+  <img 
+  src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1200&auto=format&fit=crop"
+  class="product-image">
+
+  <div class="product-content">
+
+    <div class="product-category">
+      Accessoires
+    </div>
+
+    <div class="product-name">
+      Silver Chain
+    </div>
+
+    <p class="product-desc">
+      Chaîne minimaliste premium inspirée du streetwear moderne.
+    </p>
+
+    <div class="product-bottom">
+
+      <div class="price">
+        299 DH
+      </div>
+
+    <button 
+class="buy-btn"
+onclick="addToCart(
+'Silver Chain',
+299,
+'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1200&auto=format&fit=crop',
+'Hoodie'
+)">
+Commander
+</button>
+    </div>
+
+  </div>
+
+</div>
+  <div class="product-card" data-category="Accessoires">
+
+  <img 
+  src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1200&auto=format&fit=crop"
+  class="product-image">
+
+  <div class="product-content">
+
+    <div class="product-category">
+      Accessoires
+    </div>
+
+    <div class="product-name">
+      Silver Chain
+    </div>
+
+    <p class="product-desc">
+      Chaîne minimaliste premium inspirée du streetwear moderne.
+    </p>
+
+    <div class="product-bottom">
+
+      <div class="price">
+        299 DH
+      </div>
+
+    <button 
+class="buy-btn"
+onclick="addToCart(
+'Silver Chain',
+299,
+'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1200&auto=format&fit=crop',
+'Hoodie'
+)">
+Commander
+</button>
+    </div>
+
+  </div>
+
+</div>
+<div class="product-card" data-category="Accessoires">
+
+  <img 
+  src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1200&auto=format&fit=crop"
+  class="product-image">
+
+  <div class="product-content">
+
+    <div class="product-category">
+      Accessoires
+    </div>
+
+    <div class="product-name">
+      Silver Chain
+    </div>
+
+    <p class="product-desc">
+      Chaîne minimaliste premium inspirée du streetwear moderne.
+    </p>
+
+    <div class="product-bottom">
+
+      <div class="price">
+        299 DH
+      </div>
+
+      <button 
+class="buy-btn"
+onclick="addToCart(
+'Silver Chain',
+299,
+'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1200&auto=format&fit=crop',
+'Hoodie'
+)">
+Commander
+</button>
+
+    </div>
+
+  </div>
+
+</div>
+<div class="product-card" data-category="Accessoires">
+
+  <img 
+  src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1200&auto=format&fit=crop"
+  class="product-image">
+
+  <div class="product-content">
+
+    <div class="product-category">
+      Accessoires
+    </div>
+
+    <div class="product-name">
+      Silver Chain
+    </div>
+
+    <p class="product-desc">
+      Chaîne minimaliste premium inspirée du streetwear moderne.
+    </p>
+
+    <div class="product-bottom">
+
+      <div class="price">
+        299 DH
+      </div>
+
+     <button 
+class="buy-btn"
+onclick="addToCart(
+'Silver Chain',
+299,
+'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1200&auto=format&fit=crop',
+'Hoodie'
+)">
+Commander
+</button>
+    </div>
+
+  </div>
+
+</div>
+<div class="product-card" data-category="Accessoires">
+
+  <img 
+  src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1200&auto=format&fit=crop"
+  class="product-image">
+
+  <div class="product-content">
+
+    <div class="product-category">
+      Accessoires
+    </div>
+
+    <div class="product-name">
+      Silver Chain
+    </div>
+
+    <p class="product-desc">
+      Chaîne minimaliste premium inspirée du streetwear moderne.
+    </p>
+
+    <div class="product-bottom">
+
+      <div class="price">
+        299 DH
+      </div>
+
+      <button 
+class="buy-btn"
+onclick="addToCart(
+'Silver Chain',
+299,
+'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1200&auto=format&fit=crop',
+'Hoodie'
+)">
+Commander
+</button>
+
+    </div>
+
+  </div>
+
+</div>
 
 </section>
 
@@ -844,7 +1866,46 @@ window.addEventListener('scroll',()=>{
 
 });
 
-</script>
+// CATEGORY FILTER
 
+const categoryButtons = document.querySelectorAll('.category-btn');
+const productCards = document.querySelectorAll('.product-card');
+
+categoryButtons.forEach(button => {
+
+  button.addEventListener('click', () => {
+
+    // ACTIVE BUTTON
+    categoryButtons.forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+
+    const selectedCategory = button.textContent.trim();
+
+    productCards.forEach(card => {
+
+      const category = card.querySelector('.product-category').textContent.trim();
+
+      if(
+        selectedCategory === "Tous" ||
+        selectedCategory === category ||
+        selectedCategory === category + "s"
+      ){
+
+        card.style.display = "block";
+
+      } else {
+
+        card.style.display = "none";
+
+      }
+
+    });
+
+  });
+
+});
+
+</script>
+<script src="cart.js"></script>
 </body>
 </html>

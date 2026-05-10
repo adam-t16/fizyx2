@@ -19,9 +19,38 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .nav-links{display:flex;gap:32px;list-style:none}
 .nav-links a{font-size:11px;font-weight:500;letter-spacing:1.5px;color:rgba(255,255,255,0.7);text-decoration:none;text-transform:uppercase;transition:color .2s}
 .nav-links a:hover{color:var(--gold)}
-.nav-icons{display:flex;align-items:center;gap:20px}
-.nav-icon-btn{background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.7);font-size:20px;transition:color .2s;position:relative;padding:4px}
-.nav-icon-btn:hover{color:var(--gold)}
+  .nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .nav-icons svg {
+    width: 20px; height: 20px;
+    stroke: var(--white);
+    fill: none;
+    cursor: pointer;
+    transition: stroke 0.2s;
+  }
+  .nav-icons svg:hover { stroke: var(--gold); }
+
+  .cart-badge {
+    position: relative;
+  }
+  .cart-badge .badge {
+    position: absolute;
+    top: -6px; right: -6px;
+    background: var(--gold);
+    color: var(--black);
+    font-size: 9px;
+    font-weight: 700;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
 .badge{position:absolute;top:-4px;right:-4px;background:var(--gold);color:var(--black);font-size:8px;font-weight:700;width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif}
 
 .hero{min-height:70vh;position:relative;display:flex;align-items:center;justify-content:center;padding-top:64px;overflow:hidden;text-align:center}
@@ -131,13 +160,13 @@ footer{background:#060606;padding:64px 60px 28px;border-top:1px solid #111}
     <li><a href="#story">À propos</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <div class="nav-icons">
-    <button class="nav-icon-btn" aria-label="Recherche">&#xe003;</button>
-    <button class="nav-icon-btn" aria-label="Compte">&#xe166;</button>
-    <button class="nav-icon-btn" aria-label="Panier" style="position:relative">
-      &#xe07a;
+<div class="nav-icons">
+    <svg viewBox="0 0 24 24" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <div class="cart-badge">
+      <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
       <span class="badge">0</span>
-    </button>
+    </div>
   </div>
 </nav>
 
@@ -166,7 +195,7 @@ footer{background:#060606;padding:64px 60px 28px;border-top:1px solid #111}
     <p class="section-text">Every collection at FIZYX is crafted with intention. From street culture to high fashion, each piece carries a message. Browse our latest drops and find your vibe.</p>
   </div>
 
-  <div class="grid">
+   <div class="grid">
     <div class="card">
       <img class="card-img" src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&q=80" alt="Winter Drop 2026">
       <div class="card-overlay"></div>
@@ -175,7 +204,7 @@ footer{background:#060606;padding:64px 60px 28px;border-top:1px solid #111}
         <span class="card-tag">AW 2026</span>
         <div class="card-name">Winter Drop 2026</div>
         <p class="card-desc">Designed for silence. Crafted for presence. Our latest winter essentials.</p>
-        <a href="#" class="card-cta">Explorer →</a>
+        <a href="boutique.html" class="card-cta">Explorer →</a>
       </div>
     </div>
 
@@ -186,7 +215,7 @@ footer{background:#060606;padding:64px 60px 28px;border-top:1px solid #111}
         <span class="card-tag">Streetwear</span>
         <div class="card-name">Urban Streetwear</div>
         <p class="card-desc">Raw energy meets refined aesthetics. Street culture reimagined.</p>
-        <a href="#" class="card-cta">Explorer →</a>
+        <a href="boutique.html" class="card-cta">Explorer →</a>
       </div>
     </div>
 
@@ -197,7 +226,7 @@ footer{background:#060606;padding:64px 60px 28px;border-top:1px solid #111}
         <span class="card-tag">Essentials</span>
         <div class="card-name">Minimalist Essentials</div>
         <p class="card-desc">Less is more. Core pieces that define your style everyday.</p>
-        <a href="#" class="card-cta">Explorer →</a>
+        <a href="boutique.html" class="card-cta">Explorer →</a>
       </div>
     </div>
 
@@ -209,7 +238,7 @@ footer{background:#060606;padding:64px 60px 28px;border-top:1px solid #111}
         <span class="card-tag">Exclusif</span>
         <div class="card-name">Limited Edition</div>
         <p class="card-desc">Exclusive pieces. Once they're gone, they're gone forever.</p>
-        <a href="#" class="card-cta">Explorer →</a>
+        <a href="boutique.html" class="card-cta">Explorer →</a>
       </div>
     </div>
 
@@ -220,7 +249,7 @@ footer{background:#060606;padding:64px 60px 28px;border-top:1px solid #111}
         <span class="card-tag">Archives</span>
         <div class="card-name">Heritage Classics</div>
         <p class="card-desc">Timeless pieces that never go out of style. The FIZYX archives.</p>
-        <a href="#" class="card-cta">Explorer →</a>
+        <a href="boutique.html" class="card-cta">Explorer →</a>
       </div>
     </div>
 
@@ -232,7 +261,7 @@ footer{background:#060606;padding:64px 60px 28px;border-top:1px solid #111}
         <span class="card-tag">Partenariats</span>
         <div class="card-name">Collaborations</div>
         <p class="card-desc">Special partnerships with artists and designers worldwide.</p>
-        <a href="#" class="card-cta">Explorer →</a>
+        <a href="boutique.html" class="card-cta">Explorer →</a>
       </div>
     </div>
   </div>
@@ -248,8 +277,8 @@ footer{background:#060606;padding:64px 60px 28px;border-top:1px solid #111}
     <h2 class="featured-title">Winter Drop 2026</h2>
     <p class="featured-desc">Our most anticipated collection of the season. Designed for those who dare to stand out. Each piece represents our commitment to quality, style, and meaning.</p>
     <div>
-      <a href="#" class="btn-gold">Découvrir</a>
-      <a href="#" class="btn-outline">En savoir plus</a>
+      <a href="boutique.html" class="btn-gold">Découvrir</a>
+      <a href="boutique.html" class="btn-outline">En savoir plus</a>
     </div>
   </div>
 </div>
@@ -270,39 +299,39 @@ footer{background:#060606;padding:64px 60px 28px;border-top:1px solid #111}
       <span class="footer-logo">FIZYX</span>
       <p class="footer-tagline">Streetwear designed<br>with emotion.</p>
       <div class="footer-socials">
-        <a href="#" class="social-btn" aria-label="Instagram">&#xe055;</a>
-        <a href="#" class="social-btn" aria-label="Twitter">&#xe0b6;</a>
-        <a href="#" class="social-btn" aria-label="TikTok">&#xe2c4;</a>
-        <a href="#" class="social-btn" aria-label="Facebook">&#xe04a;</a>
+        <a href="https://instagram.com/fizyx" class="social-btn" aria-label="Instagram">&#xe055;</a>
+        <a href="https://twitter.com/fizyx" class="social-btn" aria-label="Twitter">&#xe0b6;</a>
+        <a href="https://tiktok.com/fizyx" class="social-btn" aria-label="TikTok">&#xe2c4;</a>
+        <a href="https://facebook.com/fizyx" class="social-btn" aria-label="Facebook">&#xe04a;</a>
       </div>
     </div>
     <div class="footer-col">
       <h4>Liens</h4>
       <ul>
-        <li><a href="#">Accueil</a></li>
-        <li><a href="#">Boutique</a></li>
-        <li><a href="#">Collections</a></li>
-        <li><a href="#">À propos</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="boutique.html">Boutique</a></li>
+        <li><a href="collections.html">Collections</a></li>
+        <li><a href="about.html">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Aide</h4>
       <ul>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">Livraison</a></li>
-        <li><a href="#">Retours</a></li>
-        <li><a href="#">Guide des tailles</a></li>
-        <li><a href="#">Conditions</a></li>
+        <li><a href="aide.html">FAQ</a></li>
+        <li><a href="aide.html">Livraison</a></li>
+        <li><a href="aide.html">Retours</a></li>
+        <li><a href="aide.html">Guide des tailles</a></li>
+        <li><a href="aide.html">Conditions</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Contact</h4>
       <ul>
-        <li><a href="#">hello@fizyx.com</a></li>
-        <li><a href="#">+212 6 00 00 00 00</a></li>
-        <li><a href="#">Casablanca, Maroc</a></li>
-        <li><a href="#">Espace presse</a></li>
+        <li><a href="mailto:hello@fizyx.com">hello@fizyx.com</a></li>
+        <li><a href="tel:+212600000000">+212 6 00 00 00 00</a></li>
+        <li><a href="contact.html">Casablanca, Maroc</a></li>
+        <li><a href="presse.html">Espace presse</a></li>
       </ul>
     </div>
   </div>
@@ -317,6 +346,7 @@ const nav = document.querySelector('nav');
 window.addEventListener('scroll', () => {
   nav.style.background = window.scrollY > 60 ? 'rgba(5,5,5,0.99)' : 'rgba(10,10,10,0.96)';
 });
+
 </script>
 </body>
 </html>
