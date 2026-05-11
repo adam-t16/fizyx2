@@ -1,15 +1,28 @@
+// ===============================
 // CART STORAGE KEY
+// ===============================
 const CART_KEY = "fizyx-cart";
 
+
+// ===============================
+// GET CART
+// ===============================
 function getCart(){
   return JSON.parse(localStorage.getItem(CART_KEY)) || [];
 }
 
+
+// ===============================
+// SAVE CART
+// ===============================
 function saveCart(cart){
   localStorage.setItem(CART_KEY, JSON.stringify(cart));
 }
 
+
+// ===============================
 // ADD PRODUCT
+// ===============================
 function addToCart(name, price, image, category){
 
   let cart = getCart();
@@ -27,7 +40,10 @@ function addToCart(name, price, image, category){
   alert(name + " ajouté au panier 🛒");
 }
 
-// UPDATE BADGE COUNT
+
+// ===============================
+// UPDATE CART COUNT
+// ===============================
 function updateCartCount(){
 
   const cart = getCart();
@@ -38,7 +54,10 @@ function updateCartCount(){
   }
 }
 
+
+// ===============================
 // RENDER CART PAGE
+// ===============================
 function renderCart(){
 
   const cart = getCart();
@@ -78,7 +97,10 @@ function renderCart(){
   updateTotal(subtotal);
 }
 
+
+// ===============================
 // UPDATE TOTAL
+// ===============================
 function updateTotal(total){
 
   const sub = document.getElementById("subtotal");
@@ -88,7 +110,10 @@ function updateTotal(total){
   if(tot) tot.textContent = total + " DH";
 }
 
+
+// ===============================
 // REMOVE ITEM
+// ===============================
 function removeItem(index){
 
   let cart = getCart();
@@ -101,9 +126,58 @@ function removeItem(index){
   updateCartCount();
 }
 
+
+// ===============================
+// CHECKOUT (FORM SUBMIT)
+// ===============================
+function initCheckoutForm(){
+
+  const form = document.getElementById("orderForm");
+  const message = document.getElementById("successMessage");
+
+  if(!form) return;
+
+  form.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    let cart = getCart();
+
+    if(cart.length === 0){
+      alert("Votre panier est vide 🛒");
+      return;
+    }
+
+    // 1. vider panier
+    localStorage.removeItem(CART_KEY);
+
+    // 2. reset UI panier
+    renderCart();
+    updateCartCount();
+
+    // 3. reset form
+    form.reset();
+
+    // 4. message
+    if(message){
+      message.textContent = "Commande confirmée avec succès ✅";
+    }
+
+  });
+}
+
+
+// ===============================
+// INIT
+// ===============================
 function initCartUI(){
   updateCartCount();
   renderCart();
+  initCheckoutForm();
 }
 
+
+// ===============================
+// DOM READY
+// ===============================
 document.addEventListener("DOMContentLoaded", initCartUI);

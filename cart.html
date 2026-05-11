@@ -174,7 +174,46 @@ nav a{
   color:#777;
   padding:50px;
 }
+.checkout-form{
+  margin-top:30px;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
 
+.form-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:30px;
+  letter-spacing:2px;
+  margin-bottom:10px;
+}
+
+.checkout-form input,
+.checkout-form textarea{
+  width:100%;
+  background:#0d0d0d;
+  border:1px solid rgba(255,255,255,.08);
+  padding:14px;
+  color:white;
+  font-family:'Montserrat',sans-serif;
+  outline:none;
+}
+
+.checkout-form textarea{
+  min-height:120px;
+  resize:none;
+}
+
+.checkout-form input:focus,
+.checkout-form textarea:focus{
+  border-color:var(--gold);
+}
+.success-message{
+  margin-top:15px;
+  color:#b8975a;
+  font-size:14px;
+  font-weight:600;
+}
 @media(max-width:900px){
   .cart-container{
     grid-template-columns:1fr;
@@ -219,15 +258,50 @@ nav a{
         <span>Total</span>
         <span id="total">0 DH</span>
       </div>
+<form class="checkout-form" id="orderForm">
 
-      <button class="checkout-btn">Commander</button>
+  <h3 class="form-title">Informations Client</h3>
+
+  <input type="text" placeholder="Prénom" required>
+
+  <input type="text" placeholder="Nom" required>
+
+  <input type="tel" placeholder="Téléphone" required>
+
+  <textarea placeholder="Adresse complète" required></textarea>
+
+  <button type="submit" class="checkout-btn">
+    Confirmer la commande
+  </button>
+ <p id="successMessage" class="success-message"></p>
+</form>
 
     </div>
 
   </div>
 
 </section>
+<script>
+document.getElementById("orderForm").addEventListener("submit", function(e){
 
+  e.preventDefault();
+
+  // 1. vider localStorage
+  localStorage.removeItem("fizyx-cart");
+
+  // 2. message
+  document.getElementById("successMessage").textContent =
+    "Commande confirmée avec succès ✅";
+
+  // 3. reset form
+  this.reset();
+
+  // 4. refresh UI panier
+  if (typeof renderCart === "function") renderCart();
+  if (typeof updateCartCount === "function") updateCartCount();
+
+});
+</script>
 <!-- IMPORTANT -->
 <script src="cart.js"></script>
 
